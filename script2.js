@@ -4,17 +4,12 @@ async function getData(file){
 	return data;
 }
 
-asyn function init() {
+async function init() {
 	const data = await getData('./data.json');
 	console.log(data);
 }
 
 init();
-
-
-const result = alunos.map(v => v);
-console.log(result);
-
 
 
 
