@@ -1,8 +1,8 @@
 const http = require('http');
 
-const server = http.creatServer((req,res) => {
+/*const server = http.creatServer((req,res) => {
 	if(req.url === "/clientes") //condição if para comparar que conteúdo precisa ser string ou /clintes
-		return.end('Listagem Clientes') //Só vou chegar nessa condição se o if for válido
+		return.end('Listagem Clientes') //Só vou chegar nessa condição se o if for válido */
 })
 	
 	const clientes = [
@@ -14,11 +14,25 @@ const server = http.creatServer((req,res) => {
 
 	];
 	
+	const server = http.createServer((req, res) => {
+	if(req.url.toLowerCase() === "/clientes"){
+		const simpleClientes = clintes.map(x =>
+			(
+				return {nome : x.nome, ID : x.ID};
+			)};
+	
+	const server = http.createServer((req, res) => {
+		if(req.url.toLowerCase() === "/clientes"){
+			const simpleClientes = clintes.map(x =>
+			(
+				return {nome : x.nome, ID : x.ID};
+			)};
+	
 	// /clientes/1 --- Busca o /clientes/1
 	if(regexClientes.exec(req.url).indexOf(req.url) > -1){
 		const index = req.url.lastIndexof('/') + 1;
 		const id = req.url.substring(index);
-		const filteredClientes = clientes.filter(x => x.ID ===parseInt(id));		
+		const filteredClientes = clientes.filter(x => x.ID === parseInt(id));		
 		if(filteredClientes.length > 0){
 			return res.end(JSON.stringify(simpleClientes));
 		}
@@ -36,21 +50,6 @@ const server = http.creatServer((req,res) => {
 	res.statusCode = 404;
 	return res.end('URL inválida');
 	
+
 	
-	/* const server = http.createServer((req, res) => {
-		if(req.url.toLowerCase() === "/clientes"){
-			const simpleClientes = clintes.map(x =>
-			(
-				return {nome : x.nome, ID : x.ID};
-			)};
-	
-	const server = http.createServer((req, res) => {
-		if(req.url.toLowerCase() === "/clientes"){
-			const simpleClientes = clintes.map(x =>
-			(
-				return {nome : x.nome, ID : x.ID};
-			)};
-		
-		return res.end(JSON.stringify(simpleClientes));
-	}*/
 	
